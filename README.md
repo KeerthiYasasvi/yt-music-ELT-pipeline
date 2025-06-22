@@ -28,8 +28,6 @@ YouTube Music Simulator ──▶ Kafka (listening_events → listening_events_e
 
 ```
 
----
-
 
 1. **Simulator**: Polls your YouTube Music history via `ytmusicapi`, publishes raw listen events to Kafka.  
 2. **Enricher**: A light container that reads raw events, adds metadata (duration, release date), writes to `listening_events_enriched`.  
@@ -37,15 +35,11 @@ YouTube Music Simulator ──▶ Kafka (listening_events → listening_events_e
 4. **Recommender**: Reads enriched events in batches, calls OpenAI ChatGPT for 3-song recommendations based on recent history, publishes to Kafka.  
 5. **UI**: Flask app that backfills & tails your history and recommendation topics, shows recent tracks & live recommendations in browser.
 
----
-
 ## Prerequisites
 
 - **Docker** & **docker-compose** (v1.27+ recommended)  
 - A valid **YouTube Music** `browser.json` auth file for `ytmusicapi`  
 - An **OpenAI API Key** with quota to call ChatGPT models  
-
----
 
 ## Setup & Configuration
 
@@ -69,8 +63,6 @@ YouTube Music Simulator ──▶ Kafka (listening_events → listening_events_e
    
    simulator/browser.json
 
----
-
 ## Running the Pipeline
 
 **Build and start** all services:
@@ -86,8 +78,6 @@ You should see logs indicating:
 - Spark writing Parquet files under spark_output/
 - Recommender buffering events and calling ChatGPT
 - UI serving on http://localhost:5000
-
----
 
 ## Usage
 
@@ -114,8 +104,6 @@ You should see logs indicating:
      --topic song_recommendations --from-beginning --max-messages 5
 
    ```
-
----
 
 ## Directory Structure
 
@@ -151,16 +139,12 @@ ytm-stream-analytics/
 
 ```
 
----
-
 ## Customization & Extending
 
  - **Buffer size** for recommendations: adjust RECO_HISTORY_SIZE in .env or docker-compose.yml.
  - **Model**: change model="gpt-4o-mini" in run_recommend.py.
  - **Kafka topics**: override SOURCE_TOPIC, DEST_TOPIC, HISTORY_TOPIC, RECOMMENDATIONS_TOPIC as needed.
  - **Spark output**: modify Parquet path or add additional aggregations in stream_events.py.
-
----
 
 ## Troubleshooting
 
@@ -169,12 +153,9 @@ ytm-stream-analytics/
  - **YouTube Music auth errors**: regenerate browser.json via setup_browser.py steps in simulator/.
  - **Spark “NoClassDefFoundError”**: ensure the Kafka connector version (spark-sql-kafka-0-10_2.12) matches your Spark Scala version.
 
----
-
 ## Future Improvements
 
  - **Feedback loop**: let UI capture which recommendations you “like” and refine future prompts.
  - **Dashboard analytics**: use stored Parquet in a BI tool (e.g. Superset, Grafana).
  - **Authentication**: secure the UI with basic auth.
  - **Deployment**: swap Flask dev server for Gunicorn / Nginx.
-
