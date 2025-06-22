@@ -81,8 +81,8 @@ docker-compose up --build
 
 You should see logs indicating:
 
-   Simulator is polling and publishing new events
-   Kafka topics being created
-   Spark writing Parquet files under spark_output/
-   Recommender buffering events and calling ChatGPT
-   UI serving on http://localhost:5000
+- Simulator is polling and publishing new events
+- Kafka topics being created
+- Spark writing Parquet files under spark_output/
+- Recommender buffering events and calling ChatGPT
+- UI serving on http://localhost:5000
