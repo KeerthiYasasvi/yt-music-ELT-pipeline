@@ -86,3 +86,35 @@ You should see logs indicating:
 - Spark writing Parquet files under spark_output/
 - Recommender buffering events and calling ChatGPT
 - UI serving on http://localhost:5000
+
+---
+
+## Usage
+
+- **Browser UI:**
+  Open http://localhost:5000 to view:
+     - Recent Tracks (last 20 listens)
+     - Latest Recommendation (batch of 3 songs)
+     - Live Recommendations as new batches arrive
+
+ - **Kafka CLI:**
+
+   ```text
+
+   # Raw events
+   kafka-console-consumer --bootstrap-server localhost:9092 \
+     --topic listening_events --from-beginning --max-messages 5
+
+   # Enriched events
+   kafka-console-consumer --bootstrap-server localhost:9092 \
+     --topic listening_events_enriched --from-beginning --max-messages 5
+   
+   # Recommendations
+   kafka-console-consumer --bootstrap-server localhost:9092 \
+     --topic song_recommendations --from-beginning --max-messages 5
+
+   ```
+
+---
+
+## Directory Structure
