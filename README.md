@@ -24,17 +24,7 @@ A real-time data pipeline that reads your YouTube Music listening history, strea
 ## Architecture Overview
 
 ```text
-YouTube Music Simulator
-↓
-Kafka
-(listening_events → listening_events_enriched → song_recommendations)
-↓
-Spark Streaming
-(writes Parquet)
-↓
-Recommender Service (OpenAI ChatGPT)
-↓
-UI (Flask + SSE)
+YouTube Music Simulator ──▶ Kafka (listening_events → listening_events_enriched → song_recommendations) ──▶ Spark Streaming (writes Parquet) ──▶ Recommender Service (OpenAI ChatGPT) ──▶ UI (Flask + SSE)
 
 ```
 
