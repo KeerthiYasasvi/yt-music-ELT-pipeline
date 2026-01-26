@@ -1,0 +1,26 @@
+name: Support Bot
+
+on:
+  issues:
+    types: [opened, edited]
+  issue_comment:
+    types: [created]
+
+permissions:
+  issues: write
+  contents: read
+
+jobs:
+  run-support-bot:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run Support Bot via Action
+        uses: KeerthiYasasvi/ghithub-issues-bot-MAF@v0.1.0-test
+        with:
+          openai-api-key: ${{ secrets.API_KEY }}
+          openai-model: ${{ vars.PRIMARY_MODEL || 'gpt-4o' }}
+          openai-critique-model: ${{ vars.SECONDARY_MODEL || 'gpt-4o-mini' }}
+          github-token: ${{ secrets.BOT_GITHUB_TOKEN }}
+          dry-run: 'true'        # set to false to allow writes
+          write-mode: 'false'    # set to true to post comments
+          spec-dir: '.supportbot'
