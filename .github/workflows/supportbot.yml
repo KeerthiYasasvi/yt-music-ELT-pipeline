@@ -27,9 +27,11 @@ jobs:
           dotnet-version: 8.0.x
 
       - name: Run Support Concierge
+        if: github.event_name == 'issues' || github.event.comment.user.login != 'github-actions[bot]'
         run: dotnet run --project bot/src/SupportConcierge.Cli -- --event-file "$GITHUB_EVENT_PATH"
         env:
-          GITHUB_TOKEN: ${{ secrets.BOT_GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SUPPORTBOT_USERNAME: github-actions[bot]
           OPENAI_API_KEY: ${{ secrets.API_KEY }}
           OPENAI_MODEL: ${{ vars.PRIMARY_MODEL }}
           OPENAI_CRITIQUE_MODEL: ${{ vars.SECONDARY_MODEL }}
