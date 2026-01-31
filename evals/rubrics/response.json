@@ -1,0 +1,28 @@
+{
+  "rubricId": "response-ytm-v1",
+  "agentName": "Response",
+  "thresholdScore": 7,
+  "items": [
+    {
+      "id": "question_mapping",
+      "description": "Follow-up questions must map to missing fields; no duplicates; <= 3.",
+      "maxPoints": 4,
+      "type": "rule",
+      "ruleId": "question_mapping"
+    },
+    {
+      "id": "secret_request_ban",
+      "description": "Must not ask for secrets or tokens.",
+      "maxPoints": 2,
+      "type": "rule",
+      "ruleId": "secret_request_ban"
+    },
+    {
+      "id": "helpful_and_specific",
+      "description": "Response is helpful and specific to the YTM pipeline and repo.",
+      "maxPoints": 4,
+      "type": "judge",
+      "instructions": "If asking questions, they should target missing items like .env location, docker-compose usage, component, logs, Kafka topics, spark_output path. If summarizing, include evidence and next steps grounded in this repo." 
+    }
+  ]
+}

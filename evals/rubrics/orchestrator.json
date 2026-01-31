@@ -1,0 +1,28 @@
+{
+  "rubricId": "orchestrator-ytm-v1",
+  "agentName": "Orchestrator",
+  "thresholdScore": 7,
+  "items": [
+    {
+      "id": "no_hallucinated_versions",
+      "description": "Avoid asserting versions/env data not present in input.",
+      "maxPoints": 3,
+      "type": "rule",
+      "ruleId": "no_hallucinated_versions"
+    },
+    {
+      "id": "schema_valid",
+      "description": "Structured output should be valid when schema is expected.",
+      "maxPoints": 2,
+      "type": "rule",
+      "ruleId": "schema_valid"
+    },
+    {
+      "id": "decision_quality",
+      "description": "Decision to ask questions vs respond is appropriate given missing info.",
+      "maxPoints": 5,
+      "type": "judge",
+      "instructions": "If missing info exists (e.g., logs, component, config paths), prioritize follow-up questions. If issue is complete, allow a brief summary and next steps. Decisions should match the repo's pipeline context." 
+    }
+  ]
+}

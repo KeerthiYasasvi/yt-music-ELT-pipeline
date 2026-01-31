@@ -36,6 +36,8 @@ jobs:
           SUPPORTBOT_DRY_RUN: ${{ vars.SUPPORTBOT_DRY_RUN || 'false' }}
           SUPPORTBOT_WRITE_MODE: ${{ vars.SUPPORTBOT_WRITE_MODE || 'true' }}
           SUPPORTBOT_SPEC_DIR: ${{ vars.SUPPORTBOT_SPEC_DIR || '.supportbot' }}
+          SUPPORTBOT_RUBRICS_DIR: evals/rubrics
+          SUPPORTBOT_EVALS_DIR: artifacts/evals
           SUPPORTBOT_METRICS_DIR: artifacts/metrics
           SUPPORTBOT_TELEMETRY_DIR: artifacts/telemetry
 
@@ -52,3 +54,10 @@ jobs:
         with:
           name: supportbot-telemetry
           path: artifacts/telemetry
+
+      - name: Upload evals
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: supportbot-evals
+          path: artifacts/evals

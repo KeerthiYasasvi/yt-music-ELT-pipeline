@@ -1,0 +1,28 @@
+{
+  "rubricId": "research-ytm-v1",
+  "agentName": "Research",
+  "thresholdScore": 7,
+  "items": [
+    {
+      "id": "tool_allowlist",
+      "description": "Tools used must be allowed.",
+      "maxPoints": 3,
+      "type": "rule",
+      "ruleId": "tool_allowlist"
+    },
+    {
+      "id": "schema_valid",
+      "description": "Structured output should be valid when schema is expected.",
+      "maxPoints": 2,
+      "type": "rule",
+      "ruleId": "schema_valid"
+    },
+    {
+      "id": "useful_findings",
+      "description": "Findings are relevant to this repository's pipeline and troubleshooting.",
+      "maxPoints": 5,
+      "type": "judge",
+      "instructions": "Findings should reference repo-specific context (README, docker-compose services, Kafka topics, spark_output/spark_streaming, recommender, UI) or prior issues. Avoid generic advice without evidence." 
+    }
+  ]
+}

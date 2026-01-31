@@ -1,0 +1,21 @@
+{
+  "rubricId": "critique-ytm-v1",
+  "agentName": "Critique",
+  "thresholdScore": 7,
+  "items": [
+    {
+      "id": "schema_valid",
+      "description": "Judgement output must be valid.",
+      "maxPoints": 4,
+      "type": "rule",
+      "ruleId": "schema_valid"
+    },
+    {
+      "id": "useful_feedback",
+      "description": "Feedback is actionable for YTM pipeline issues.",
+      "maxPoints": 6,
+      "type": "judge",
+      "instructions": "Issues and suggestions should be specific (e.g., missing .env values, missing logs, unclear component), not generic." 
+    }
+  ]
+}
